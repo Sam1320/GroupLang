@@ -1,0 +1,67 @@
+# name: Chalice CI/CD
+
+# on:
+#   push:
+#     branches:
+#       - main  # Replace with your branch name
+#       - feature
+#     paths-ignore:
+#       - '**/README.md'
+#       - '**/docs/*'
+#       - '**/.github/*'
+
+# jobs:
+#   deploy:
+#     runs-on: ubuntu-latest
+
+#     steps:
+#     - name: Checkout code
+#       uses: actions/checkout@v3
+
+#     - name: Set up Python
+#       uses: actions/setup-python@v4
+#       with:
+#         python-version: 3.9
+
+#     - name: Install dependencies
+#       run: |
+#         python -m pip install --upgrade pip
+#         pip install chalice
+#         pip install -r requirements.txt
+        
+#     - name: Update config.json with API key
+#       env:
+#         OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+#         S3_BUCKET: ${{secrets.S3_BUCKET}}
+#         S3_PRIVATE_BUCKET: ${{secrets.S3_PRIVATE_BUCKET}}
+#         GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+#         GOOGLE_CSE_ID: ${{ secrets.GOOGLE_CSE_ID }}
+#         SERPER_API_KEY: ${{ secrets.SERPER_API_KEY }}
+#         PINECONE_API_KEY: ${{ secrets.PINECONE_API_KEY }}
+#         PINECONE_ENVIRONMENT: ${{ secrets.PINECONE_ENVIRONMENT }}
+#         MAIN_BOT_NAME: ${{ secrets.MAIN_BOT_NAME }}
+#         MAIN_MOD_ID: ${{ secrets.MAIN_MOD_ID }}
+#         MAIN_MOD_USERNAME: ${{ secrets.MAIN_MOD_USERNAME }}
+        
+#       run: |
+#         python -c "import json; 
+#         config = json.load(open('.chalice/config.json', 'r')); 
+#         config['environment_variables']['OPENAI_API_KEY'] = '$OPENAI_API_KEY';
+#         config['environment_variables']['S3_BUCKET'] = '$S3_BUCKET'; 
+#         config['environment_variables']['S3_PRIVATE_BUCKET'] = '$S3_PRIVATE_BUCKET';
+#         config['environment_variables']['GOOGLE_API_KEY'] = '$GOOGLE_API_KEY';
+#         config['environment_variables']['GOOGLE_CSE_ID'] = '$GOOGLE_CSE_ID';
+#         config['environment_variables']['SERPER_API_KEY'] = '$SERPER_API_KEY';
+#         config['environment_variables']['PINECONE_API_KEY'] = '$PINECONE_API_KEY';
+#         config['environment_variables']['PINECONE_ENVIRONMENT'] = '$PINECONE_ENVIRONMENT';
+#         config['environment_variables']['MAIN_BOT_NAME'] = '$MAIN_BOT_NAME';
+#         config['environment_variables']['MAIN_MOD_ID'] = '$MAIN_MOD_ID';
+#         config['environment_variables']['MAIN_MOD_USERNAME'] = '$MAIN_MOD_USERNAME';
+#         json.dump(config, open('.chalice/config.json', 'w'), indent=2)"
+
+#     - name: Deploy Chalice app
+#       run: chalice deploy
+#       env:
+#         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+#         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#         AWS_DEFAULT_REGION: 'eu-central-1'

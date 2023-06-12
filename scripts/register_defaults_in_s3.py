@@ -149,9 +149,6 @@ Here is the feedback:
 Please provide the final answer. No other output.
 """
 
-MAIN_MOD_ID = os.environ.get("MAIN_MOD_ID")
-MAIN_MOD_USERNAME = os.environ.get("MAIN_MOD_USERNAME")
-
 default_prompts = {
     'user': TEMP_USER_PROMPT,
     'query': QUERY_AGENT_PROMPT,
@@ -169,7 +166,6 @@ default_prompts = {
 
 config = {
     'prompts' : default_prompts,
-    'moderators' : {'main_mod': {'username': MAIN_MOD_USERNAME, 'id': MAIN_MOD_ID}},
     'experts' : [],
     'tools' : [{'name': 'clarification', 'description': 'ask for clarification'}],
     'llm' : "gpt-3.5-turbo",

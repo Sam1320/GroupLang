@@ -22,13 +22,13 @@ https://github.com/Sam1320/GroupLang/assets/33493647/f2d65de4-49a1-4f66-bc14-ac3
 ### Asking Questions Regarding docs, Toggling Feedback/Debug Modes, Adding Tools
 https://github.com/Sam1320/GroupLang/assets/33493647/716ede83-357c-4b1e-ad7a-36b3edabeca1
 
-# Getting Started (WIP)
+# Getting Started
 ## Initial Setup 
 
 1. Create an [OpenAI account](https://openai.com/api/) and [get an API Key](https://platform.openai.com/account/api-keys).
 2. Create an [AWS account](https://aws.amazon.com/es/).
 3. Setup your Telegram bot. You can follow [this instructions](https://core.telegram.org/bots/tutorial#obtain-your-bot-token) to get your token.
-4. Create 2 S3 buckets in your AWS account, one public and one private.
+4. Create 2 S3 buckets in your AWS account, one public used as storage for new bots created and one private used for storing global defaults.
 5. Create a Pinecone account and get an API key.
 6. Create a Serper account and get an API key.
 7. Go to `.chalice/config.json` and stablish the configurations:
@@ -40,7 +40,9 @@ https://github.com/Sam1320/GroupLang/assets/33493647/716ede83-357c-4b1e-ad7a-36b
 - `SERPER_API_KEY`: with your Serper API key,
 - `PINECONE_API_KEY`: with your Pinecone API key,
 - `PINECONE_ENVIRONMENT` with your Pinecone environment.
-8. as an alternative to step 7, you can set the environment variables in github secrets and uncomment the code in `.github/workflows/main.yml` this will automatically setup and deploy your bot in AWS Lambda when you push to the main branch.
+- `MAIN_MOD_USERNAME` with the telegram username of the user you want to be the main moderator of the bot.
+- `MAIN_MOD_ID` with the telegram id of the user you want to be the main moderator of the bot.
+8. (optional) as an alternative to step 7, you can set the environment variables in github secrets and uncomment the code in `.github/workflows/main.yml` this will automatically setup and deploy your bot in AWS Lambda when you push to the main branch.
 
 ## Installation
 1. Install Python using [pyenv](https://github.com/pyenv/pyenv-installer) or your prefered Python installation.
@@ -50,6 +52,7 @@ https://github.com/Sam1320/GroupLang/assets/33493647/716ede83-357c-4b1e-ad7a-36b
 4. [Install the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) and [configure your credentials](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-quickstart.html).
 
 ## Deployment
+0. store defaults in the s3 private bucket by running `python scripts/register_defaults_in_s3.py`.
 1. Run `chalice deploy`.
 2. Go to the AWS Console -> Lambda -> grouplang-dev-message-handler -> Configuration -> Function URL.
 3. Click Create Function URL and set Auth type to NONE.
