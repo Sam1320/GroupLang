@@ -1,0 +1,15 @@
+typing-inspect==0.8.0 
+typing_extensions==4.5.0
+python-telegram-bot==13.11
+requests
+chalice
+boto3
+wget
+openai
+langchain
+pexpect
+pinecone-client
+tiktoken
+pypdf2
+gitpython
+# google-api-python-client
