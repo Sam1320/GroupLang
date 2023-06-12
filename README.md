@@ -14,13 +14,14 @@ The running version of the bot is currently deployed in AWS Lambda and is built 
 - [x] Moderators can toggle debug mode to hide thoghts and logs.
 
 ### Setting up Group, Uploading Docs & Adding Experts
-https://github.com/Sam1320/GroupLang/assets/33493647/ccae2fef-9a21-442c-93d7-2c1ceec396f9
+https://github.com/Sam1320/GroupLang/assets/33493647/9d4bce51-6a4c-459e-9759-349430b84906
 
 ### Asking Domain Experts for Help
-https://github.com/Sam1320/GroupLang/assets/33493647/f2d65de4-49a1-4f66-bc14-ac3232cc6fc5
+https://github.com/Sam1320/GroupLang/assets/33493647/acbcf7f8-c048-43f1-b202-a9231ccd5c2f
 
 ### Asking Questions Regarding docs, Toggling Feedback/Debug Modes, Adding Tools
-https://github.com/Sam1320/GroupLang/assets/33493647/716ede83-357c-4b1e-ad7a-36b3edabeca1
+https://github.com/Sam1320/GroupLang/assets/33493647/fc02e062-b07a-4f04-b1c8-74035ef60fd3
+
 
 # Getting Started (WIP)
 ## Initial Setup 
