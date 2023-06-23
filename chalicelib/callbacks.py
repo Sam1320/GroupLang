@@ -4,6 +4,9 @@ import io
 import json
 import uuid
 import boto3
+AWS_PROFILE = 'localstack'
+boto3.setup_default_session(profile_name=AWS_PROFILE)
+
 from telegram import ParseMode, Update, ChatAction
 from chalicelib.custom_objects import Query
 from langchain.embeddings.openai import OpenAIEmbeddings
@@ -30,7 +33,11 @@ from chalicelib.credentials import BUCKET, MAIN_MOD_USERNAME, PINECONE_API_KEY, 
 
 
 
-s3 = boto3.client("s3")
+# s3 = boto3.client("s3")
+AWS_REGION = "eu-west-1"
+ENDPOINT_URL = "http://localhost:4566"
+s3 = boto3.client("s3", region_name=AWS_REGION, endpoint_url=ENDPOINT_URL)
+
 # user commands
 user_commands_list  = [
     "*User commands:*",

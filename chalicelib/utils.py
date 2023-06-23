@@ -4,7 +4,11 @@ from functools import wraps
 import json
 import pickle
 import uuid
+
 import boto3
+AWS_PROFILE = 'localstack'
+boto3.setup_default_session(profile_name=AWS_PROFILE)
+
 from telegram import ParseMode, Bot, ChatAction
 from langchain import PromptTemplate
 from langchain.chains import LLMChain
@@ -33,8 +37,10 @@ from chalicelib.credentials import APP_NAME, BUCKET, PRIVATE_BUCKET, PINECONE_AP
 
 app = Chalice(app_name=APP_NAME)
 app.debug = True
-s3 = boto3.client("s3")
-
+# s3 = boto3.client("s3")
+AWS_REGION = "eu-west-1"
+ENDPOINT_URL = "http://localhost:4566"
+s3 = boto3.client("s3", region_name=AWS_REGION, endpoint_url=ENDPOINT_URL)
 
 def send_typing_action(func):
     """Sends typing action while processing func command."""
@@ -449,7 +455,10 @@ def set_main_chat_id(bot_username, chat_id):
     s3.put_object(Bucket=BUCKET, Key=moderators_key, Body=json.dumps(moderators))
 
 def delete_bot_data_from_s3(bot_id):
-    s3 = boto3.resource('s3')
+    AWS_REGION = "eu-west-1"
+    ENDPOINT_URL = "http://localhost:4566"
+    s3 = boto3.resource('s3', region_name=AWS_REGION,
+                         endpoint_url=ENDPOINT_URL)
     bucket_name = BUCKET
     prefix = f'{bot_id}/'
     bucket = s3.Bucket(bucket_name)

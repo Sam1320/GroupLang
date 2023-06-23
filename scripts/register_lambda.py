@@ -1,9 +1,14 @@
 import boto3, json
+AWS_PROFILE = 'localstack'
+boto3.setup_default_session(profile_name=AWS_PROFILE)
+
 import os
 from telegram import Bot
 
 def register_lambda(lambda_name, url):
-    s3 = boto3.client("s3")
+    AWS_REGION = "eu-west-1"
+    ENDPOINT_URL = "http://localhost:4566"
+    s3 = boto3.client("s3", region_name=AWS_REGION, endpoint_url=ENDPOINT_URL)
 
     # get s3 private bucket name from env   
     BUCKET = os.environ['S3_PRIVATE_BUCKET']

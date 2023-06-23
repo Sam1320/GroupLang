@@ -2,6 +2,9 @@ import json
 from chalice import Chalice
 from telegram.ext import Dispatcher, MessageHandler, Filters, CommandHandler
 import boto3
+AWS_PROFILE = 'localstack'
+boto3.setup_default_session(profile_name=AWS_PROFILE)
+
 from telegram import MessageEntity, ParseMode, Update, Bot
 from langchain.chat_models import ChatOpenAI
 from langchain.prompts import PromptTemplate
@@ -15,7 +18,10 @@ from chalicelib.callbacks import (
     cmd_add_moderator, handle_document, new_member, handle_url)
 from chalicelib.credentials import BUCKET, PRIVATE_BUCKET, MAIN_BOT_NAME, APP_NAME, MESSAGE_HANDLER_LAMBDA
 
-s3 = boto3.client("s3")
+# s3 = boto3.client("s3")
+AWS_REGION = "eu-west-1"
+ENDPOINT_URL = "http://localhost:4566"
+s3 = boto3.client("s3", region_name=AWS_REGION, endpoint_url=ENDPOINT_URL)
 app = Chalice(app_name=APP_NAME)
 app.debug = True
 
