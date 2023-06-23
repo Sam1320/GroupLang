@@ -178,7 +178,7 @@ AWS_PROFILE = 'localstack'
 boto3.setup_default_session(profile_name=AWS_PROFILE)
 
 def register_defaults_in_s3(BUCKET):
-    AWS_REGION = "eu-west-2"
+    AWS_REGION = "eu-west-1"
     ENDPOINT_URL = "http://localhost:4566"
     s3 = boto3.resource('s3', region_name=AWS_REGION,
                          endpoint_url=ENDPOINT_URL)
