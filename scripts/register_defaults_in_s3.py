@@ -174,8 +174,14 @@ config = {
     'feedback_mode' : 'yes'
 }
 
+AWS_PROFILE = 'localstack'
+boto3.setup_default_session(profile_name=AWS_PROFILE)
+
 def register_defaults_in_s3(BUCKET):
-    s3 = boto3.resource('s3')
+    AWS_REGION = "eu-west-2"
+    ENDPOINT_URL = "http://localhost:4566"
+    s3 = boto3.resource('s3', region_name=AWS_REGION,
+                         endpoint_url=ENDPOINT_URL)
     s3.Object(BUCKET, 'default_config.json').put(Body=json.dumps(config))
     
 if __name__ == "__main__":
