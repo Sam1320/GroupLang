@@ -11,7 +11,7 @@ def register_lambda(lambda_name, url):
     s3 = boto3.client("s3", region_name=AWS_REGION, endpoint_url=ENDPOINT_URL)
 
     # get s3 private bucket name from env   
-    BUCKET = os.environ['S3_PRIVATE_BUCKET']
+    BUCKET = os.environ.get['S3_PRIVATE_BUCKET']
     lambdas_db_key = "lambdas.json"
 
     try:
